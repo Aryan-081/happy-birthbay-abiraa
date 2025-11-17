@@ -26,12 +26,9 @@
             text-align: center;
         }
         
-        /* Style the audio player to be hidden but visible if needed */
+        /* Hide the default audio controls completely for a clean look */
         audio {
-            width: 50%;
-            margin-bottom: 10px;
-            /* You can hide the controls entirely by adding: display: none; 
-               but then the user must click the page to start the music. */
+            display: none;
         }
 
         .card-container {
@@ -116,13 +113,13 @@
         }
 
         .repeating-text-container {
-            max-height: 300px; /* Limits the height */
-            overflow-y: scroll; /* Makes it scrollable */
+            max-height: 300px; 
+            overflow-y: scroll; 
             width: 100%;
             max-width: 600px;
             padding: 10px;
             border: 2px solid var(--purple-bold);
-            background-color: #FFF0F5; /* Blushed Pink */
+            background-color: #FFF0F5; 
             border-radius: 10px;
             margin-top: 20px;
         }
@@ -138,7 +135,7 @@
 </head>
 <body>
 
-    <audio src="Kanaa - Othaiyadi Pathayila Lyric Aishwarya Rajesh Dhibu Ninan Thomas Arunraja Kamaraj SK.mp3" autoplay loop controls></audio>
+    <audio id="bday-audio" src="Kanaa - Othaiyadi Pathayila Video  Arunraja Kamaraj  Dhibu Ninan Thomas.mp3" loop></audio>
     <div class="card-container">
         
         <div class="title">Happy 15th Birthday!</div>
@@ -168,6 +165,30 @@
     </div>
 
     <script>
+        // JAVASCRIPT: FORCE AUDIO ON FIRST INTERACTION
+        const audio = document.getElementById('bday-audio');
+        let audioPlayed = false;
+
+        function playAudio() {
+            if (!audioPlayed) {
+                // Try to play the audio
+                audio.play().then(() => {
+                    audioPlayed = true;
+                    // Remove the listeners after successful play
+                    document.removeEventListener('click', playAudio);
+                    document.removeEventListener('touchstart', playAudio);
+                }).catch(error => {
+                    // Log error if play fails (e.g., still blocked or file missing)
+                    console.log('Audio playback blocked or failed:', error);
+                });
+            }
+        }
+
+        // Add listeners for the first click (desktop) or touch (mobile)
+        document.addEventListener('click', playAudio);
+        document.addEventListener('touchstart', playAudio);
+
+
         // JAVASCRIPT: WHITE SPOTS AND REPEATING TEXT LOGIC
 
         // 1. Decorative Text Injection (100x)
