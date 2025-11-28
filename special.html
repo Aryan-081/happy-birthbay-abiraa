@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Special Birthday Page</title>
+
+   <style>
+       body {
+           margin: 0;
+           padding: 0;
+           text-align: center;
+           background: linear-gradient(135deg, #ff3bd2, #7f00ff);
+           font-family: 'Poppins', sans-serif;
+           color: white;
+           overflow-x: hidden;
+       }
+
+       /* Neon Glowing Header */
+       h1 {
+           margin-top: 25px;
+           font-size: 3.5em;
+           font-weight: 900;
+           text-shadow: 
+               0 0 10px #ff99ff,
+               0 0 20px #ff66ff,
+               0 0 40px #ff00ff,
+               0 0 60px #cc00cc;
+           animation: glow 2s infinite alternate;
+       }
+
+       @keyframes glow {
+           from { text-shadow: 0 0 10px #ff99ff; }
+           to { text-shadow: 0 0 35px #ff00ff; }
+       }
+
+       /* Glitter Border Card */
+       .card {
+           margin: auto;
+           margin-top: 20px;
+           width: 90%;
+           max-width: 900px;
+           background: rgba(255,255,255,0.15);
+           padding: 20px;
+           border-radius: 20px;
+           backdrop-filter: blur(10px);
+           box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+           border: 4px solid transparent;
+           background-clip: padding-box;
+           position: relative;
+       }
+
+       .card:before {
+           content: "";
+           position: absolute;
+           top: -4px;
+           left: -4px;
+           right: -4px;
+           bottom: -4px;
+           border-radius: 22px;
+           background: linear-gradient(45deg, #ff66ff, #ffffff, #b300ff);
+           z-index: -1;
+       }
+
+       img {
+           width: 100%;
+           border-radius: 15px;
+           box-shadow: 0 0 20px rgba(255,255,255,0.6);
+       }
+
+       /* Animated text */
+       p {
+           font-size: 1.4em;
+           margin-top: 15px;
+           animation: fadeIn 3s ease-in-out infinite alternate;
+       }
+
+       @keyframes fadeIn {
+           from { opacity: 0.5; }
+           to { opacity: 1; }
+       }
+
+       /* Floating Hearts */
+       .heart {
+           position: fixed;
+           color: pink;
+           font-size: 20px;
+           animation: floatUp 4s linear infinite;
+           filter: drop-shadow(0 0 5px pink);
+       }
+
+       @keyframes floatUp {
+           0% { transform: translateY(0); opacity: 1; }
+           100% { transform: translateY(-120vh); opacity: 0; }
+       }
+
+       /* Sparkles */
+       .sparkle {
+           position: fixed;
+           width: 8px;
+           height: 8px;
+           background: white;
+           border-radius: 50%;
+           animation: sparkleMove 3s linear infinite;
+           opacity: 0.7;
+           filter: drop-shadow(0 0 6px white);
+       }
+
+       @keyframes sparkleMove {
+           from { transform: translateY(0) scale(1); }
+           to { transform: translateY(-120vh) scale(0.3); }
+       }
+   </style>
+</head>
+
+<body>
+
+   <h1>🎉 Happy 15th Birthday, Abira! 🎉</h1>
+
+   <div class="card">
+       <img src="Gemini_Generated_Image_4jl02g4jl02g4jl0.png">
+       <p>You are amazing, unique and special. May your year shine as bright as you do! 💖</p>
+   </div>
+
+   <script>
+       function createHeart() {
+           const heart = document.createElement("div");
+           heart.classList.add("heart");
+           heart.innerHTML = "💖";
+           heart.style.left = Math.random() * 100 + "vw";
+           heart.style.bottom = "-20px";
+           heart.style.fontSize = (Math.random() * 20 + 20) + "px";
+           document.body.appendChild(heart);
+           setTimeout(() => heart.remove(), 4000);
+       }
+
+       setInterval(createHeart, 300);
+
+       function sparkle() {
+           const s = document.createElement("div");
+           s.classList.add("sparkle");
+           s.style.left = Math.random() * 100 + "vw";
+           s.style.top = "100vh";
+           s.style.animationDuration = (Math.random() * 2 + 2) + "s";
+           document.body.appendChild(s);
+           setTimeout(() => s.remove(), 4000);
+       }
+
+       setInterval(sparkle, 200);
+   </script>
+
+</body>
+</html>
