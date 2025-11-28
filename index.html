@@ -127,7 +127,11 @@
 
 <body>
 
-    <audio id="bday-audio" src="Kanaa - Othaiyadi Pathayila Video  Arunraja Kamaraj  Dhibu Ninan Thomas.mp3" loop></audio>
+<audio id="music" preload="auto" loop>
+    <source src="Kanaa - Othaiyadi Pathayila Video  Arunraja Kamaraj  Dhibu Ninan Thomas.mp3" type="audio/mp3">
+</audio>
+
+
 
     <div class="card-container">
         <div class="title">Happy 15th Birthday!</div>
@@ -154,18 +158,31 @@
     </div>
 
     <script>
-        const audio = document.getElementById('bday-audio');
-        let audioPlayed = false;
+    const music = document.getElementById("music");
+    let unlocked = false;
 
-        function playAudio() {
-            if (!audioPlayed) {
-                audio.play();
-                audioPlayed = true;
-            }
-        }
+    // Try to play and handle errors
+    function tryPlay() {
+        if (unlocked) return;
 
-        document.addEventListener('click', playAudio);
-        document.addEventListener('touchstart', playAudio);
+        music.play().then(() => {
+            unlocked = true;
+            console.log("Music started.");
+        }).catch(err => {
+            console.warn("Audio blocked:", err);
+        });
+    }
+
+    // Unlock audio on ANY gesture
+    ["click", "touchstart", "touchend", "keydown", "scroll"].forEach(evt => {
+        document.addEventListener(evt, tryPlay, { once: false });
+    });
+
+    // Debug: Check if file loads
+    music.onerror = () => {
+        alert("⚠️ ERROR: The MP3 file cannot be found.\nMake sure it is in the SAME folder as the HTML file.");
+    };
+
 
         const message = '🎉🎂 Happy Birthday! 🥳🎁';
         const container = document.getElementById('decorative-message');
@@ -176,4 +193,5 @@
 
 </body>
 </html>
+
 
