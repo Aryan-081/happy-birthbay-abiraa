@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy 15th Birthday, Abira!</title>
     <style>
-        /* CSS: BOLD PINK & PURPLE AESTHETIC */
         :root {
-            --pink-bold: #FF69B4; /* Hot Pink */
-            --purple-bold: #9932CC; /* Dark Orchid/Purple */
-            --background-color: #F8F0FF; /* Very light purple/white */
-            --text-color: #4B0082; /* Indigo/Deep Purple */
+            --pink-bold: #FF69B4;
+            --purple-bold: #9932CC;
+            --background-color: #F8F0FF;
+            --text-color: #4B0082;
         }
 
         body {
@@ -25,11 +24,8 @@
             min-height: 100vh;
             text-align: center;
         }
-        
-        /* Hide the default audio controls completely for a clean look */
-        audio {
-            display: none;
-        }
+
+        audio { display: none; }
 
         .card-container {
             width: 100%;
@@ -74,15 +70,12 @@
             transition: transform 0.3s ease;
         }
 
-        .photo-frame:hover {
-            transform: scale(1.05) rotate(3deg);
-        }
+        .photo-frame:hover { transform: scale(1.05) rotate(3deg); }
 
         .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: block;
         }
 
         .note {
@@ -97,158 +90,88 @@
             border: 3px dashed white;
         }
 
-        .note p {
-            margin: 5px 0;
+        .go-btn {
+            margin-top: 25px;
+            padding: 15px 30px;
+            background: var(--purple-bold);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.4em;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(153, 50, 204, 0.6);
         }
 
-        .white-spots {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: white;
-            border-radius: 50%;
-            pointer-events: none;
-            box-shadow: 0 0 5px white;
-            z-index: 1000;
+        .go-btn:hover {
+            transform: scale(1.08);
+            background: var(--pink-bold);
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
         }
 
         .repeating-text-container {
-            max-height: 300px; 
-            overflow-y: scroll; 
+            max-height: 300px;
+            overflow-y: scroll;
             width: 100%;
             max-width: 600px;
             padding: 10px;
             border: 2px solid var(--purple-bold);
-            background-color: #FFF0F5; 
+            background-color: #FFF0F5;
             border-radius: 10px;
             margin-top: 20px;
         }
 
-        .decorative-text {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: var(--purple-bold);
-            font-weight: bold;
-        }
-
+        .decorative-text { font-size: 1.1em; line-height: 1.8; color: var(--purple-bold); font-weight: bold; }
     </style>
 </head>
+
 <body>
 
     <audio id="bday-audio" src="Kanaa - Othaiyadi Pathayila Video  Arunraja Kamaraj  Dhibu Ninan Thomas.mp3" loop></audio>
+
     <div class="card-container">
-        
         <div class="title">Happy 15th Birthday!</div>
         <div class="subtitle">🎉 ABIRA 🎉</div>
 
         <div class="photo-gallery">
-            <div class="photo-frame">
-                <img src="Screenshot 2025-11-16 204907.png" alt="Abira's Photo 1">
-            </div>
-            <div class="photo-frame">
-                <img src="Screenshot 2025-11-16 205050.png" alt="Abira's Photo 2">
-            </div>
+            <div class="photo-frame"><img src="Screenshot 2025-11-16 204907.png"></div>
+            <div class="photo-frame"><img src="Screenshot 2025-11-16 205050.png"></div>
         </div>
 
         <div class="note">
-            <p style="font-weight: bold;">Happy 15th Birthday, dear Abira!</p>
-            <p>Watching you grow into the incredible person you are has been such a joy. May this next year bring even more sparkle, exciting adventures, and all the dreams your beautiful heart desires.</p>
-            <p>Here's to more memories, endless smiles, and embracing every moment of this beautiful journey ahead! Keep shining, you're truly one of a kind!.....SCROLL</p>
+            <p><b>Happy 15th Birthday, dear Abira!</b></p>
+            <p>Wishing you endless joy, sparkle, and love this year.</p>
         </div>
 
+        <!-- NEW BUTTON -->
+        <button class="go-btn" onclick="window.location.href='special.html'">🎀 Open Special Birthday Page 🎀</button>
     </div>
 
     <div class="repeating-text-container">
-        <div id="decorative-message" class="decorative-text">
-            </div>
+        <div id="decorative-message" class="decorative-text"></div>
         <p style="font-size:0.8em; color: gray;">(Scroll for wishes!)</p>
     </div>
 
     <script>
-        // JAVASCRIPT: FORCE AUDIO ON FIRST INTERACTION
         const audio = document.getElementById('bday-audio');
         let audioPlayed = false;
 
         function playAudio() {
             if (!audioPlayed) {
-                // Try to play the audio
-                audio.play().then(() => {
-                    audioPlayed = true;
-                    // Remove the listeners after successful play
-                    document.removeEventListener('click', playAudio);
-                    document.removeEventListener('touchstart', playAudio);
-                }).catch(error => {
-                    // Log error if play fails (e.g., still blocked or file missing)
-                    console.log('Audio playback blocked or failed:', error);
-                });
+                audio.play();
+                audioPlayed = true;
             }
         }
 
-        // Add listeners for the first click (desktop) or touch (mobile)
         document.addEventListener('click', playAudio);
         document.addEventListener('touchstart', playAudio);
 
-
-        // JAVASCRIPT: WHITE SPOTS AND REPEATING TEXT LOGIC
-
-        // 1. Decorative Text Injection (100x)
-        const message = '🎉🎂 Hαppч Bírthdαч! 🥳🎁';
+        const message = '🎉🎂 Happy Birthday! 🥳🎁';
         const container = document.getElementById('decorative-message');
         let fullMessage = '';
-        for (let i = 0; i < 100000; i++) {
-            fullMessage += message + '<br>';
-        }
+        for (let i = 0; i < 300; i++) fullMessage += message + '<br>';
         container.innerHTML = fullMessage;
-
-        // 2. White Spots/Confetti Effect
-        function createSpot() {
-            const spot = document.createElement('div');
-            spot.classList.add('white-spots');
-            
-            // Random position across the whole screen
-            spot.style.left = Math.random() * 100 + 'vw';
-            spot.style.top = Math.random() * 100 + 'vh';
-            
-            // Random size between 3px and 12px
-            const size = Math.random() * 9 + 3;
-            spot.style.width = size + 'px';
-            spot.style.height = size + 'px';
-            
-            // Random animation delay and duration for subtle movement
-            spot.style.animation = `fade-in-out ${Math.random() * 5 + 5}s linear infinite, move ${Math.random() * 5 + 5}s linear infinite`;
-
-            document.body.appendChild(spot);
-
-            // Clean up old spots after they are off-screen to prevent slowdown
-            setTimeout(() => spot.remove(), 10000);
-        }
-
-        // Create a continuous stream of spots
-        setInterval(createSpot, 300); // Creates a new spot every 300ms
-
-        // CSS for the spot movement (embedded in JavaScript for completeness)
-        const styleSheet = document.createElement("style");
-        styleSheet.type = "text/css";
-        styleSheet.innerText = `
-            @keyframes fade-in-out {
-                0%, 100% { opacity: 0; }
-                50% { opacity: 0.8; }
-            }
-            @keyframes move {
-                0% { transform: translateY(0) rotate(0deg); }
-                100% { transform: translateY(-100vh) rotate(360deg); }
-            }
-        `;
-        document.head.appendChild(styleSheet);
-        
     </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
